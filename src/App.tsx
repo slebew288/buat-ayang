@@ -51,7 +51,6 @@ export default function App() {
   const [videoEnded, setVideoEnded] = useState(false);
   const bgAudioRef = useRef<HTMLAudioElement>(null);
   const clickSoundRef = useRef<HTMLAudioElement>(null);
-  const textScreenAudioRef = useRef<HTMLAudioElement>(null);
   const photoScreenAudioRef = useRef<HTMLAudioElement>(null);
   const [tetriminos, setTetriminos] = useState<Array<{ id: number, type: string, x: number, y: number, duration: number }>>([]);
 
@@ -92,16 +91,11 @@ export default function App() {
 
 
     if (bgAudioRef.current) bgAudioRef.current.pause();
-    if (textScreenAudioRef.current) textScreenAudioRef.current.pause();
     if (photoScreenAudioRef.current) photoScreenAudioRef.current.pause();
 
     if (step === 'menu') {
       if (bgAudioRef.current) {
         bgAudioRef.current.play().catch(err => console.warn("Error playing background music:", err));
-      }
-    } else if (step === 'text') {
-      if (textScreenAudioRef.current) {
-        textScreenAudioRef.current.play().catch(err => console.warn("Error playing text screen music:", err));
       }
     } else if (step === 'photo') {
       if (photoScreenAudioRef.current) {
@@ -149,8 +143,6 @@ export default function App() {
       try {
         if (currentStep === 'menu' && bgAudioRef.current) {
           await bgAudioRef.current.play();
-        } else if (currentStep === 'text' && textScreenAudioRef.current) {
-          await textScreenAudioRef.current.play();
         } else if (currentStep === 'photo' && photoScreenAudioRef.current) {
           await photoScreenAudioRef.current.play();
         }
@@ -163,7 +155,6 @@ export default function App() {
 
     return () => {
       bgAudioRef.current?.pause();
-      textScreenAudioRef.current?.pause();
       photoScreenAudioRef.current?.pause();
     };
   }, [currentStep]);
@@ -196,7 +187,6 @@ export default function App() {
       {/* Audio elements */}
       <audio ref={bgAudioRef} src={typedData.sounds.background} loop />
       <audio ref={clickSoundRef} src={typedData.sounds.click} />
-      <audio ref={textScreenAudioRef} src={typedData.sounds.textScreen} loop />
       <audio ref={photoScreenAudioRef} src={typedData.sounds.photoScreen} loop />
 
       {/* Tetris grid background */}

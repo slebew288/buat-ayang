@@ -76,11 +76,11 @@ const PhotoScreen: React.FC<PhotoScreenProps> = ({
           </div>
         </div>
         
-        <div className="photo-caption-container">
+        {/* <div className="photo-caption-container">
           <div className="photo-caption">
             {captions[currentPhotoIndex]}
           </div>
-        </div>
+        </div> */}
         
         <div className="photo-controls">  
           <div className="photo-navigation">
