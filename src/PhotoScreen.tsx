@@ -11,7 +11,7 @@ interface PhotoScreenProps {
 
 const PhotoScreen: React.FC<PhotoScreenProps> = ({
   photos,
-  captions,
+  // captions,
   currentPhotoIndex,
   onNavigate,
   sounds,
